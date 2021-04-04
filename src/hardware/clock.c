@@ -7,7 +7,8 @@
 #include "stm32f0xx_ll_system.h"
 #include "clock.h"
 
-void clock_init(void) {
+void clock_init(void)
+{
   LL_FLASH_EnablePrefetch();
 
   LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);

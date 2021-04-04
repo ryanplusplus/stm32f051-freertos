@@ -84,7 +84,8 @@ extern const SEGGER_SYSVIEW_OS_API SYSVIEW_X_OS_TraceAPI;
 *  Function description
 *    Sends SystemView description strings.
 */
-static void _cbSendSystemDesc(void) {
+static void _cbSendSystemDesc(void)
+{
   SEGGER_SYSVIEW_SendSysDesc("N=" SYSVIEW_APP_NAME ",D=" SYSVIEW_DEVICE_NAME ",O=FreeRTOS");
   SEGGER_SYSVIEW_SendSysDesc("I#15=SysTick");
 }
@@ -95,7 +96,8 @@ static void _cbSendSystemDesc(void) {
 *
 **********************************************************************
 */
-void SEGGER_SYSVIEW_Conf(void) {
+void SEGGER_SYSVIEW_Conf(void)
+{
   SEGGER_SYSVIEW_Init(SYSVIEW_TIMESTAMP_FREQ, SYSVIEW_CPU_FREQ, &SYSVIEW_X_OS_TraceAPI, _cbSendSystemDesc);
   SEGGER_SYSVIEW_SetRAMBase(SYSVIEW_RAM_BASE);
 }

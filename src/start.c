@@ -14,7 +14,8 @@ extern uint32_t _stack_top;
 
 extern void main(void);
 
-void reset_handler(void) {
+void reset_handler(void)
+{
   uint32_t* source = &_data_rom;
 
   for(uint32_t* destination = &_data_begin; destination < &_data_end;) {
@@ -28,7 +29,8 @@ void reset_handler(void) {
   main();
 }
 
-void default_handler(void) {
+void default_handler(void)
+{
   while(1) {
   }
 }
