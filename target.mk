@@ -54,7 +54,6 @@ SRC_FILES += \
   lib/SystemView/SEGGER/SEGGER_SYSVIEW.c \
 
 SRC_DIRS += \
-  src/system_view \
   lib/SystemView/Sample/FreeRTOSV10 \
 
 INC_DIRS += \
@@ -63,6 +62,7 @@ INC_DIRS += \
   lib/stm32cube/CMSIS/STM32F0xx/inc \
   lib/stm32cube/HAL/STM32F0xx/inc \
   lib/SystemView/SEGGER \
+  src/system_view \
 
 endif
 
