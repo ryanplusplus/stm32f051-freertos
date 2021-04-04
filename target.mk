@@ -1,5 +1,5 @@
 TARGET = $(subst .mk,,$(firstword $(MAKEFILE_LIST)))
-BUILD_DIR ?= build/$(TARGET)
+BUILD_DIR ?= build
 
 CPU := cortex-m0
 ARCH := armv6-m
@@ -17,6 +17,12 @@ USE_SYSTEM_VIEW := Y
 DEFINES := \
   STM32F051x8 \
   HSE_VALUE=8000000 \
+
+ifeq ($(USE_SYSTEM_VIEW),Y)
+DEFINES += \
+  USE_SYSTEM_VIEW \
+
+endif
 
 include tools/defaults.mk
 
@@ -45,9 +51,6 @@ INC_DIRS := \
   lib/stm32cube/HAL/STM32F0xx/inc \
 
 ifeq ($(USE_SYSTEM_VIEW),Y)
-DEFINES += \
-  USE_SYSTEM_VIEW \
-
 SRC_FILES += \
   lib/SystemView/Sample/NoOS/Config/Cortex-M0/SEGGER_SYSVIEW_Config_NoOS_CM0.c \
   lib/SystemView/SEGGER/SEGGER_RTT.c \
