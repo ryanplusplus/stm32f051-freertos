@@ -32,7 +32,7 @@ static void blink_task_function(void* context)
   }
 }
 
-void main(void)
+int main(void)
 {
   __disable_irq();
   {
