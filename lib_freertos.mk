@@ -35,6 +35,10 @@ endif
 freertos_CFLAGS += \
   -Wno-cast-qual
 
-INC_DIRS += \
+freertos_exported_INC_DIRS := \
+  $(freertos_CONFIG_DIR) \
   $(freertos_FREERTOS)/include \
   $(freertos_FREERTOS)/portable/GCC/ARM_CM0 \
+
+INC_DIRS += \
+  $(freertos_exported_INC_DIRS)
