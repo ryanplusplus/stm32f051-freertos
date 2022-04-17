@@ -15,8 +15,9 @@
         "${workspaceFolder}/lib/tiny/include",
         "${workspaceFolder}/lib/tiny/src",
         "${workspaceFolder}/src",
-        "${workspaceFolder}/src/app",
-        "${workspaceFolder}/src/hardware"
+        "${workspaceFolder}/src/freertos",
+        "${workspaceFolder}/src/hardware",
+        "${workspaceFolder}/src/freertos/system_view"
       ],
       "intelliSenseMode": "gcc-arm",
       "cStandard": "c11",

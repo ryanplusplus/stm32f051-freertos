@@ -26,7 +26,7 @@ freertos_SRC_DIRS += \
 
 freertos_INC_DIRS += \
   lib/SystemView/SEGGER \
-  src/system_view \
+  src/freertos/system_view \
 
 IGNORE := $(shell $(MAKE) --no-print-directory -f patch.mk)
 BUILD_DEPS += patch.mk

@@ -23,7 +23,7 @@ SRC_FILES := \
 
 INC_DIRS := \
 
-freertos_USE_SYSTEM_VIEW := N
+freertos_USE_SYSTEM_VIEW ?= Y
 freertos_CONFIG_DIR := src/freertos
 include lib_freertos.mk
 include lib/tiny/lib_tiny.mk
