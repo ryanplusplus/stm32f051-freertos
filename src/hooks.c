@@ -6,12 +6,18 @@
  */
 
 #include "FreeRTOS.h"
+#include "interrupts.h"
+#include "reset.h"
 #include "task.h"
 
 void vApplicationStackOverflowHook(TaskHandle_t xTask, char* pcTaskName)
 {
   (void)xTask;
   (void)pcTaskName;
+  reset();
+}
 
-  // fixme it would probably be a good idea to reset
+void vApplicationIdleHook(void)
+{
+  interrupts_wait_for_interrupt();
 }
