@@ -14,6 +14,7 @@
 #include "time_source.h"
 #include "tiny_timer.h"
 #include "heartbeat.h"
+#include "interrupts.h"
 
 #ifdef USE_SYSTEM_VIEW
 #include "SEGGER_SYSVIEW.h"
@@ -23,6 +24,8 @@ static StaticTask_t blink_task;
 static StackType_t blink_task_stack[512 / sizeof(StackType_t)];
 static void blink_task_function(void* context)
 {
+  (void)context;
+
   static tiny_timer_group_t timer_group;
   tiny_timer_group_init(&timer_group, time_source_init());
   heartbeat_init(&timer_group);
@@ -34,11 +37,11 @@ static void blink_task_function(void* context)
 
 int main(void)
 {
-  __disable_irq();
+  interrupts_enable();
   {
     clock_init();
   }
-  __enable_irq();
+  interrupts_disable();
 
 #ifdef USE_SYSTEM_VIEW
   SEGGER_SYSVIEW_Conf();

@@ -9,6 +9,7 @@
 
 static tiny_time_source_ticks_t ticks(i_tiny_time_source_t* self)
 {
+  (void)self;
   return (tiny_time_source_ticks_t)xTaskGetTickCount();
 }
 

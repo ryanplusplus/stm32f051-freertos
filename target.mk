@@ -1,9 +1,11 @@
-TARGET = $(subst .mk,,$(firstword $(MAKEFILE_LIST)))
+include tools/setup.mk
+
+TARGET = target
 BUILD_DIR ?= build
 
 CPU := cortex-m0
 ARCH := armv6-m
-LINKER_CFG := linker.ld
+LINKER_SCRIPT := linker.ld
 SVD := svd/stm32f0x1.svd
 
 DEBUG_ADAPTER ?= jlink
@@ -11,8 +13,6 @@ JLINK_DEVICE := STM32F051K8
 OPENOCD_CFG_DIR := openocd
 BLACK_MAGIC_PORT ?= /dev/ttyACM0
 BLACK_MAGIC_POWER_TARGET ?= N
-
-USE_SYSTEM_VIEW := Y
 
 DEFINES := \
   STM32F051x8 \
@@ -35,11 +35,17 @@ INC_DIRS := \
   lib/stm32cube/CMSIS/STM32F0xx/inc \
   lib/stm32cube/HAL/STM32F0xx/inc \
 
-include freertos.mk
-include lib_tiny.mk
+freertos_USE_SYSTEM_VIEW := N
+freertos_CONFIG_DIR := src
+include lib_freertos.mk
+include lib/tiny/lib_tiny.mk
 
-include tools/tools.mk
+.PHONY: all
+all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex
+	@$(SIZE) $<
 
 .PHONY: watch
 watch:
 	@rerun "$(MAKE) --no-print-directory -f $(firstword $(MAKEFILE_LIST))"
+
+include tools/tools.mk

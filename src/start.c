@@ -75,9 +75,9 @@ void CEC_CAN_IRQHandler(void) __attribute__((weak, alias("default_handler")));
 
 typedef void (*vector_t)(void);
 
-const vector_t vector_table[] __attribute__((section(".vectors"))) = {
+const vector_t vector_table[] __attribute__((section(".vectors"), used)) = {
   // Cortex-M0
-  (vector_t)&_stack_top,
+  (vector_t)(uintptr_t)&_stack_top,
   reset_handler,
   NMI_Handler,
   HardFault_Handler,
