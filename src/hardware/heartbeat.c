@@ -17,9 +17,8 @@ static struct {
   tiny_timer_t timer;
 } self;
 
-static void blink(tiny_timer_group_t* group, void* context)
+static void blink(void* context)
 {
-  (void)group;
   (void)context;
   LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_13);
 }
